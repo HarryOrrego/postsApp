@@ -1,0 +1,14 @@
+.header {
+
+    text-align: center;
+    color: blue;
+    border: 1px solid black;
+    
+}
+
+
+.body{
+    margin: 2em 0px 2em 0px;
+    text-align: center;
+    border: 1px solid black;
+}

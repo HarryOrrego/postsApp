@@ -3,14 +3,14 @@ class Comunication{
     service =  'https://jsonplaceholder.typicode.com/';
 
     endpoints = {
-        getUser : 'user',
+        getUsers : 'users',
         getPosts : 'posts',
         getComments : 'comments'
     }
 
     getUsers(id = ''){
         return Utilities.DoRequest({
-            url : this.service + this.endpoints.getUser + '/' + id
+            url : this.service + this.endpoints.getUsers + '/' + id
         });   
     }
 
