@@ -1,4 +1,4 @@
-$('document').ready(function(){
+$('document').ready(function () {
 
     // variables
     const _comunication = new Comunication();
@@ -12,38 +12,46 @@ $('document').ready(function(){
     //           renderMainUsers(response);
     //     });       
     // }
-
-    const getPosts = () =>{
+    const getPosts = () => {
+        $('#loader').show();
         let request = _comunication.getPosts();
 
-        request.done((response) =>{
+        request.done((response) => {
             renderMainPosts(response);
-        });        
-    }
-
-    const renderMainPosts = (posts) =>{
-        let postsTemplate = '';
-        posts.forEach((post)=>{
-            postsTemplate += `
-                        <div class="card " style="width: 18rem;">
-                <div class="card-body">
-                <h5 class="card-title">${post.title}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">${post.id}</h6>
-                <p class="card-text">${post.body}</p>
-                </div>
-            </div>
-            <br>
-        `
         });
 
-        $('.main-posts').html(postsTemplate);
-        
+
     }
 
+    const renderMainPosts = (posts, pag_init = 0) => {
+        let postsTemplate = '';
+        for (var i = pag_init; i < pag_init + 10; i++) {
+            let post = posts[i];
+            let userPostRequest = _comunication.getUsers(post.userId, false);
+            let commentByPost = _comunication.GetCommentsByPost(post.id);           
+          
+            userPostRequest.done(function (user) {
+                postsTemplate += `
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${post.title}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">${user.name}</h6>
+                        <p class="card-text">${post.body}</p>
+                        <p class="card-footer">${}</p>
+                    </div>
+                </div>
+                <br>`;
+            });
+        }
 
-    function Main(){
+        $('#loader').hide();
+        $('.main-posts').html(postsTemplate);
+
+    }
+
+    function Main() {
         getPosts();
-        
+
     }
 
     Main();

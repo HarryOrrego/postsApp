@@ -10,6 +10,8 @@
   <body>
     <div class="container">
 
+    <div id="loader" style="display:none"></div>
+
     <div class="header">
         <h1>POST APP</h1>
     </div>

@@ -5,12 +5,14 @@ class Comunication{
     endpoints = {
         getUsers : 'users',
         getPosts : 'posts',
-        getComments : 'comments'
+        getComments : 'comments',
+        getCommentsByPost : 'comments?postId'
     }
 
-    getUsers(id = ''){
+    getUsers(id = '' , async = true){
         return Utilities.DoRequest({
-            url : this.service + this.endpoints.getUsers + '/' + id
+            url : this.service + this.endpoints.getUsers + '/' + id,
+            async :async
         });   
     }
 
@@ -25,6 +27,12 @@ class Comunication{
             url : this.service + this.endpoints.getComments + '/' + id
         });
     }
+
+    GetCommentsByPost(id){
+        return Utilities.DoRequest({
+            url : this.service + this.endpoints.getCommentsByPost + '=' + id
+        })
+    };
 
 
 }
