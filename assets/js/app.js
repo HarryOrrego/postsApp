@@ -37,7 +37,7 @@ $('document').ready(function () {
                         <h5 class="card-title">${post.title}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">${user.name}</h6>
                         <p class="card-text">${post.body}</p>
-                        <p class="card-footer">${}</p>
+                        <p class="card-footer">${user.email}</p>
                     </div>
                 </div>
                 <br>`;
